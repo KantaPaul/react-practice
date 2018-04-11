@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 console.log('app js is running');
 
@@ -6,57 +6,70 @@ console.log('app js is running');
 
 // templae one
 var template = React.createElement(
-    'div',
+    "div",
     null,
     React.createElement(
-        'h1',
+        "h1",
         null,
-        ' hi i am react '
+        " hi i am react "
     ),
     React.createElement(
-        'p',
+        "p",
         null,
-        'hello'
+        "hello"
     ),
     React.createElement(
-        'ol',
+        "ol",
         null,
         React.createElement(
-            'li',
+            "li",
             null,
-            'Item one'
+            "Item one"
         ),
         React.createElement(
-            'li',
+            "li",
             null,
-            'Item two'
+            "Item two"
         )
     )
 );
 
+var userName = "Pobon",
+    userAge = 26,
+    userLocation = "Khulna";
+
+var user = {
+    name: "Chandra",
+    age: 22,
+    location: "Dhaka"
+};
+
 // template two
 var templateTwo = React.createElement(
-    'div',
+    "div",
     null,
     React.createElement(
-        'h1',
+        "h1",
         null,
-        'Name : Kanta'
+        "Name : ",
+        user.name
     ),
     React.createElement(
-        'p',
+        "p",
         null,
-        'Age : 26'
+        "Age : ",
+        user.age
     ),
     React.createElement(
-        'p',
+        "p",
         null,
-        'Location : Dhaka'
+        "Location : ",
+        user.location
     )
 );
 
-var appRoot = document.getElementById('app');
+// var appRoot = document.getElementById('app');
 var appRootTwo = document.getElementById('apptwo');
 
-ReactDOM.render(template, appRoot);
+// ReactDOM.render(template, appRoot);
 ReactDOM.render(templateTwo, appRootTwo);
