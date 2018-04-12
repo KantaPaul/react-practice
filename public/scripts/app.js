@@ -1,35 +1,39 @@
-"use strict";
+'use strict';
 
 console.log('app js is running');
 
 //JSX - Javascript XML
 
 // templae one
+var app = {
+    title: 'Some title',
+    subtitle: 'This is my sub title'
+};
 var template = React.createElement(
-    "div",
+    'div',
     null,
     React.createElement(
-        "h1",
+        'h1',
         null,
-        " hi i am react "
+        app.title
     ),
     React.createElement(
-        "p",
+        'p',
         null,
-        "hello"
+        app.subtitle
     ),
     React.createElement(
-        "ol",
+        'ol',
         null,
         React.createElement(
-            "li",
+            'li',
             null,
-            "Item one"
+            'Item one'
         ),
         React.createElement(
-            "li",
+            'li',
             null,
-            "Item two"
+            'Item two'
         )
     )
 );
@@ -46,30 +50,136 @@ var user = {
 
 // template two
 var templateTwo = React.createElement(
-    "div",
+    'div',
     null,
     React.createElement(
-        "h1",
+        'h1',
         null,
-        "Name : ",
+        'Name : ',
         user.name
     ),
     React.createElement(
-        "p",
+        'p',
         null,
-        "Age : ",
+        'Age : ',
         user.age
     ),
     React.createElement(
-        "p",
+        'p',
         null,
-        "Location : ",
+        'Location : ',
         user.location
     )
 );
 
+// conditonal rendering
+var userInfo = {
+    name: "Mike",
+    age: 20,
+    country: "Bangladesh",
+    ps: "Shyamoli"
+};
+function getLocation(country) {
+    // if (country) {
+    //     return country;
+    // } else {
+    //     return 'unknown';
+    // }
+    if (country) {
+        return React.createElement(
+            'p',
+            null,
+            'Country : ',
+            country
+        );
+    }
+};
+var templateThree = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h2',
+        null,
+        'Name : ',
+        userInfo.name ? userInfo.name : 'Unknown Person'
+    ),
+    userInfo.age && userInfo.age >= 18 && React.createElement(
+        'h3',
+        null,
+        'Age : ',
+        userInfo.age
+    ),
+    getLocation(userInfo.country),
+    userInfo.ps && userInfo.ps && React.createElement(
+        'h5',
+        null,
+        'Police Station: ',
+        userInfo.ps
+    )
+);
+
+// task
+var appInfo = {
+    title: "React App",
+    subtitle: "Welcome to my app",
+    options: ['one', 'two']
+};
+function showoption(option) {
+    if (option.length > 0) {
+        return React.createElement(
+            'p',
+            null,
+            'Here is your options'
+        );
+    } else {
+        return React.createElement(
+            'p',
+            null,
+            'No options here'
+        );
+    }
+}
+var templaeFour = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h2',
+        null,
+        appInfo.title
+    ),
+    appInfo.subtitle && React.createElement(
+        'h3',
+        null,
+        appInfo.subtitle
+    ),
+    showoption(appInfo.options),
+    React.createElement(
+        'p',
+        null,
+        appInfo.options.length > 0 ? 'Your options' : 'No options'
+    ),
+    React.createElement(
+        'ol',
+        null,
+        React.createElement(
+            'li',
+            null,
+            'Option One'
+        ),
+        React.createElement(
+            'li',
+            null,
+            'Option Two'
+        )
+    )
+);
+
 // var appRoot = document.getElementById('app');
-var appRootTwo = document.getElementById('apptwo');
+// var appRootTwo = document.getElementById('apptwo');
+// var appRootThree = document.getElementById('appthree');
+var appRootFour = document.getElementById('appfour');
 
 // ReactDOM.render(template, appRoot);
-ReactDOM.render(templateTwo, appRootTwo);
+// ReactDOM.render(templateTwo, appRootTwo);
+// ReactDOM.render(templateThree, appRootThree);
+ReactDOM.render(templaeFour, appRootFour);
