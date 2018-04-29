@@ -2,184 +2,49 @@
 
 console.log('app js is running');
 
-//JSX - Javascript XML
+var visibility = false;
 
-// templae one
-var app = {
-    title: 'Some title',
-    subtitle: 'This is my sub title'
+var visibleText = function visibleText() {
+  visibility = !visibility;
+  renderContent();
 };
-var template = React.createElement(
+
+var app = document.getElementById('app');
+
+var renderContent = function renderContent() {
+  var visibleTemplate = React.createElement(
     'div',
     null,
     React.createElement(
-        'h1',
-        null,
-        app.title
+      'h1',
+      { className: 'mb-3' },
+      'Visibility Toggle'
     ),
     React.createElement(
+      'button',
+      { onClick: visibleText, className: visibility ? 'btn btn-primary' : 'btn btn-secondary' },
+      visibility ? 'Hide Details' : 'Show Details'
+    ),
+    visibility ? React.createElement(
+      'p',
+      { className: 'lead mt-3' },
+      'Hi i am logical if'
+    ) : React.createElement(
+      'p',
+      { className: 'lead mt-3' },
+      'No content'
+    ),
+    visibility && React.createElement(
+      'div',
+      null,
+      React.createElement(
         'p',
-        null,
-        app.subtitle
-    ),
-    React.createElement(
-        'ol',
-        null,
-        React.createElement(
-            'li',
-            null,
-            'Item one'
-        ),
-        React.createElement(
-            'li',
-            null,
-            'Item two'
-        )
+        { className: 'lead' },
+        'Hi i am logical and'
+      )
     )
-);
-
-var userName = "Pobon",
-    userAge = 26,
-    userLocation = "Khulna";
-
-var user = {
-    name: "Chandra",
-    age: 22,
-    location: "Dhaka"
+  );
+  ReactDOM.render(visibleTemplate, app);
 };
 
-// template two
-var templateTwo = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        'Name : ',
-        user.name
-    ),
-    React.createElement(
-        'p',
-        null,
-        'Age : ',
-        user.age
-    ),
-    React.createElement(
-        'p',
-        null,
-        'Location : ',
-        user.location
-    )
-);
-
-// conditonal rendering
-var userInfo = {
-    name: "Mike",
-    age: 20,
-    country: "Bangladesh",
-    ps: "Shyamoli"
-};
-function getLocation(country) {
-    // if (country) {
-    //     return country;
-    // } else {
-    //     return 'unknown';
-    // }
-    if (country) {
-        return React.createElement(
-            'p',
-            null,
-            'Country : ',
-            country
-        );
-    }
-};
-var templateThree = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h2',
-        null,
-        'Name : ',
-        userInfo.name ? userInfo.name : 'Unknown Person'
-    ),
-    userInfo.age && userInfo.age >= 18 && React.createElement(
-        'h3',
-        null,
-        'Age : ',
-        userInfo.age
-    ),
-    getLocation(userInfo.country),
-    userInfo.ps && userInfo.ps && React.createElement(
-        'h5',
-        null,
-        'Police Station: ',
-        userInfo.ps
-    )
-);
-
-// task
-var appInfo = {
-    title: "React App",
-    subtitle: "Welcome to my app",
-    options: ['one', 'two']
-};
-function showoption(option) {
-    if (option.length > 0) {
-        return React.createElement(
-            'p',
-            null,
-            'Here is your options'
-        );
-    } else {
-        return React.createElement(
-            'p',
-            null,
-            'No options here'
-        );
-    }
-}
-var templaeFour = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h2',
-        null,
-        appInfo.title
-    ),
-    appInfo.subtitle && React.createElement(
-        'h3',
-        null,
-        appInfo.subtitle
-    ),
-    showoption(appInfo.options),
-    React.createElement(
-        'p',
-        null,
-        appInfo.options.length > 0 ? 'Your options' : 'No options'
-    ),
-    React.createElement(
-        'ol',
-        null,
-        React.createElement(
-            'li',
-            null,
-            'Option One'
-        ),
-        React.createElement(
-            'li',
-            null,
-            'Option Two'
-        )
-    )
-);
-
-// var appRoot = document.getElementById('app');
-// var appRootTwo = document.getElementById('apptwo');
-// var appRootThree = document.getElementById('appthree');
-var appRootFour = document.getElementById('appfour');
-
-// ReactDOM.render(template, appRoot);
-// ReactDOM.render(templateTwo, appRootTwo);
-// ReactDOM.render(templateThree, appRootThree);
-ReactDOM.render(templaeFour, appRootFour);
+renderContent();
